@@ -3,16 +3,27 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      options: {
-        separator: ';',
-      },
       dist: {
         src: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'public/lib/jquery.js',
+          'public/lib/underscore.js',
+          'public/lib/backbone.js',
+          'public/lib/handlebars.js',
+        ],
+        dest: 'bin/lib-debug.js'
+      },
+      dist2: {
+        src: [
+          'public/client/app.js',
+          'public/client/link.js',
+          'public/client/links.js',
+          'public/client/linkView.js',
+          'public/client/linksView.js',
+          'public/client/createLinkView.js',
+          'public/client/router.js'
         ],
         dest: 'bin/app-debug.js'
-      },
+      }
     },
 
     mochaTest: {
@@ -33,7 +44,8 @@ module.exports = function(grunt) {
     uglify: {
       myTarget: {
         files: {
-          'bin/app.js' : ['bin/app-debug.js']
+          'bin/app.js' : ['bin/app-debug.js'],
+          'bin/lib.js' : ['bin/lib-debug.js']
         }
       }
     },
