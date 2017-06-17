@@ -31,7 +31,7 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      my_target: {
+      myTarget: {
         files: {
           'bin/app.js' : ['bin/app-debug.js']
         }
@@ -39,8 +39,11 @@ module.exports = function(grunt) {
     },
 
     eslint: {
+      options: {
+        quiet: true
+      },
       target: [
-        // Add list of files to lint here
+        '**/*.js'
       ]
     },
 
@@ -107,6 +110,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'eslint', 'test', 'concat', 'uglify', 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -119,6 +123,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
+
   ]);
 
 
